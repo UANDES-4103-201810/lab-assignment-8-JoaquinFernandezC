@@ -4,31 +4,38 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @user = User.find(params[:user_id])
+    @products = @user.products
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    user = User.find(params[:user_id])
+    @product = user.products.find(params[:id])
   end
 
   # GET /products/new
   def new
-    @product = Product.new
+    user = User.find(params[:user_id])
+    @product = user.products.new
   end
 
   # GET /products/1/edit
   def edit
+    user = User.find(params[:user_id])
+    @product = user.products.find(params[:id])
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    user = User.find(params[:user_id])
+    @product = user.products.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to [@product.user, @product], notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -40,9 +47,11 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    user = User.find(params[:user_id])
+    @product = user.products.find(params[:id])
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to [@product.user, @product], notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -54,9 +63,11 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    user = User.find(params[:user_id])
+    @product = user.products.find(params[:id])
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to user_products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

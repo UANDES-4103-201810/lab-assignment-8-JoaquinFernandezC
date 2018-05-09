@@ -4,10 +4,10 @@ one:
   first_name: MyString
   last_name: MyString
   username: MyString
-  isAdmin: false
+  is_admin: false
 
 two:
   first_name: MyString
   last_name: MyString
   username: MyString
-  isAdmin: false
+  is_admin: false

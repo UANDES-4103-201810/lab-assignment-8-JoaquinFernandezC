@@ -1,24 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="col-md-3">
+  <% if (@user.is_admin)%>
+  <% end %>
+</div>
+<div class="col-md-offset-4">
+  <h1>
+    <strong>
+      <%= @user.first_name %>
+      <%= @user.last_name %>
+    </strong>
+  </h1>
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+  <p>
+    <% if (@user.is_admin)%>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+    <strong>Is admin of the page</strong>
+    <% end %>
+  </p>
+  <%= link_to 'Products', user_products_path(@user) %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>
 
-<p>
-  <strong>Isadmin:</strong>
-  <%= @user.isAdmin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
