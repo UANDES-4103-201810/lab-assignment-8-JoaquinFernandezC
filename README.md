@@ -4,6 +4,8 @@ Group Members:
 * Joaquin Fernandez
 * Vicente Lucero
 
+Note: For some reason, git did not let me pull, and I worked about 10 minutes trying to figure out why, that's why I delivered a couple of minutes late
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
